@@ -1,0 +1,41 @@
+select{
+    background: #151F30;
+    border:0;
+    color: white;
+    padding-left: 10px;
+
+    
+}  
+/* option{
+    background:#151F30;
+    padding-left: 15px;
+    position: relative;
+    left: 20px;
+} */
+.select-align{
+    color: #ffff;
+    position: relative;
+    left:110px;
+    cursor: pointer;
+} 
+.select-align2{
+    color: #ffff;
+    position: relative;
+    left: 125px;
+    cursor: pointer;
+} 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+  .btn-genre{
+      background-color: #065baa;
+      border-radius: 25px;
+      font-size: 12px;
+      text-align: center;
+      padding: 5px;
+      font-weight: bold;  
+  }
+  .btn-genre:hover{
+    background-color: #01944a;
+}

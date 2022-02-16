@@ -1,0 +1,13 @@
+.sign{ 
+    background: url(/assets/images/admin/bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} 
+
+.invalid-feedback{
+    color:white; 
+    margin-top:-5px; 
+    margin-bottom:10px; 
+    font-size:12px; 
+}

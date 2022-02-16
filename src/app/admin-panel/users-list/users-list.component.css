@@ -1,0 +1,11 @@
+.main__table tbody tr {
+    border-bottom: 10px solid #131720;
+    background: #151f30;
+    border-radius: 16px;
+}
+.main__table tbody tr td{
+    padding: 0 0 0 20px;
+}
+.main__table-btns{
+    margin-left: -30px;
+}

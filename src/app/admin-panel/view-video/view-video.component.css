@@ -1,0 +1,7 @@
+#player{
+    width:100%;
+    height: 90%;
+    background: #151f30;
+    background-size: cover;
+    overflow: hidden;
+}

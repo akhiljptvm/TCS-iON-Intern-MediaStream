@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+	<!-- main content -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- main title -->
+				<div class="col-12">
+					<div class="main__title">
+						<h2>Add Video</h2>
+					</div>
+				</div>
+				<!-- end main title -->
+
+				<!-- form -->
+				<div class="col-12">
+					<form action="#" class="form">
+						<div class="row">
+							<div class="col-12 col-md-5 form__cover">
+								<div class="row">
+									<div class="col-12 col-sm-6 col-md-12">
+										<div class="form__img">
+											<label for="form__img-upload">Upload thumbnail</label>
+											<input id="form__img-upload" name="thumbnail" placeholder="Upload thumbnail" type="file" (change)="onSelectFile($event)" [(ngModel)]="uploadVideo.thumbnail" (change)="thumbFile($event)" accept=".png, .jpg, .jpeg" required>
+											<img id="form__img" #urlImg [src]="url" alt=" ">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-7 form__content">
+								<div class="row">
+									<div class="col-12">
+										<div class="form__group">
+											<input type="text" class="form__input" name="title" [(ngModel)]="uploadVideo.videoTitle" placeholder="Title">
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="form__group">
+											<textarea id="text" name="description" [(ngModel)]="uploadVideo.description" class="form__textarea"  placeholder="Description" required></textarea>
+										</div>
+									</div>
+
+									<div class="col-12 col-sm-6 col-lg-3">
+										<div class="form__group">
+											<input type="text" class="form__input" name="releaseYear" [(ngModel)]="uploadVideo.releaseYear"  placeholder="Release year" required>
+										</div>
+									</div>
+
+									<div class="col-12 col-sm-6 col-lg-3">
+										<div class="form__group">
+											<input type="text" class="form__input" placeholder="tags.." name="tag" [(ngModel)]="uploadVideo.tags">
+										</div>
+									</div>
+
+									<div class="col-12 col-sm-6 col-lg-3">
+										<div class="form__group">
+											<select class="js-example-basic-single" [(ngModel)]="uploadVideo.quality" name="quality"  style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;" >
+												<option value="" selected>-Quality-</option>
+												<option value="FullHD">FullHD</option>
+												<option value="HD">HD</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-12 col-sm-6 col-lg-3">
+										<div class="form__group">
+											<select class="js-example-basic-single" id="quality" name="genre"  [(ngModel)]="uploadVideo.genre" style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
+												<option value="" selected>-Genre-</option>
+												<option value="Action">Action</option>
+												<option value="Animation">Animation</option>
+												<option value="Comedy">Comedy</option>
+												<option value="Crime">Crime</option>
+												<option value="Drama">Drama</option>
+												<option value="Fantasy">Fantasy</option>
+												<option value="Historical">Historical</option>
+												<option value="Horror">Horror</option>
+												<option value="Romance">Romance</option>
+												<option value="Science-fiction">Science-fiction</option>
+												<option value="Thriller">Thriller</option>
+												<option value="Western">Western</option>
+												<option value="Otheer">Otheer</option>
+
+											</select>
+										</div>
+									</div>
+
+									
+
+									<!-- <div class="col-12">
+										<div class="form__gallery">
+											<label id="gallery1" for="form__gallery-upload">Upload photos</label>
+											<input data-name="#gallery1" id="form__gallery-upload" name="gallery" class="form__gallery-upload" type="file" accept=".png, .jpg, .jpeg" multiple>
+										</div>
+									</div> -->
+								</div>
+							</div>
+
+							
+							
+							<div class="col-12">
+								<div class="row">
+									<div class="col-12 col-lg-6">
+										<div class="form__video">
+											<label id="movie1" for="form__video-upload">Upload video</label>
+											<input data-name="#movie1" id="form__video-upload" name="video" [(ngModel)]="uploadVideo.video" (change)="videoFile($event)" class="form__video-upload" type="file" accept="video/mp4,video/x-m4v,video/*">
+										</div>
+									</div>
+
+									<!-- <div class="col-12 col-lg-6">
+										<div class="form__group form__group--link">
+											<input type="text"  class="form__input" placeholder="Upload subtitle" name="subtitle" [(ngModel)]="uploadVideo.subtitle" >
+										</div>
+									</div> -->
+
+									<div class="col-12">
+										<button type="submit" class="form__btn" name="publish" (click)="uploadVid()">publish</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end form -->
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
+
+    <app-footer></app-footer>
