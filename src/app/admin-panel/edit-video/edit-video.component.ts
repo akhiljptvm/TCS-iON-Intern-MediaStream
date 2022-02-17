@@ -38,6 +38,12 @@ export class EditVideoComponent implements OnInit {
     }
   }
 
+
+
+  edit(editvideo:any){
+    console.log("video edited");
+  }
+  
   constructor() { }
 
   ngOnInit(): void {

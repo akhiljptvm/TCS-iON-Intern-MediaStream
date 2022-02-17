@@ -18,3 +18,8 @@ mat-chip{
 mat-icon{
   color: #151f30;
 }
+
+.invalid-feedback{
+  color: rgb(160, 160, 160);
+  font-size: 14px;
+}
