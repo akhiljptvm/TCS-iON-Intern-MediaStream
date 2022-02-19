@@ -4,12 +4,17 @@ import { LandingServiceService } from '../landing-service.service'
 import Swal from 'sweetalert2';
 // import * as $ from 'jquery';
 
+
 @Component({
   selector: 'app-add-video',
   templateUrl: './add-video.component.html',
   styleUrls: ['./add-video.component.css']
 })
 export class AddVideoComponent implements OnInit {
+
+
+ 
+
  
   selectedFile: any;
   formData: any = {};
@@ -40,6 +45,13 @@ export class AddVideoComponent implements OnInit {
         this.url = event.target.result;
       }
     }
+  }
+
+
+  // validation
+
+  onSubmit(Upload:any){
+    console.log("video uploaded");
   }
 
   ngOnInit(): void {

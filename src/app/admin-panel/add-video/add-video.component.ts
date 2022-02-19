@@ -41,6 +41,10 @@ export class AddVideoComponent implements OnInit {
   }
 
 
+  Uploadvideo(){
+    console.log("video uploaded");
+  }
+  
   constructor() { }
 
   ngOnInit(): void {

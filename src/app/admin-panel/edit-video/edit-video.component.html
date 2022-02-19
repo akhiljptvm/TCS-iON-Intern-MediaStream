@@ -16,16 +16,21 @@
 
 				<!-- form -->
 				<div class="col-12">
-					<form action="#" class="form">
+					<form name="editvideo" class="form" #editvideo="ngForm" (ngSubmit)="edit(editvideo)">
 						<div class="row">
 							<div class="col-12 col-md-5 form__cover">
 								<div class="row">
 									<div class="col-12 col-sm-6 col-md-12">
 										<div class="form__img">
 											<label for="form__img-upload">Upload cover (190 x 270)</label>
-											<input id="form__img-upload" name="form__img-upload" type="file" accept=".png, .jpg, .jpeg">
+											<input id="form__img-upload" name="thumbnail" type="file" accept=".png, .jpg, .jpeg" required #thumbnail="ngModel" ngModel>
 											<img id="form__img" src="#" alt=" ">
 										</div>
+
+										<div *ngIf="(thumbnail.touched || editvideo.submitted)" class="invalid-feedback" style="margin-top: -20px;">
+											<div *ngIf="thumbnail.errors?.['required']">Thumbnail is required**</div>	
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -34,43 +39,63 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form__group">
-											<input type="text" class="form__input" placeholder="Title">
+											<input type="text" class="form__input" placeholder="Title" name="title" required #title="ngModel" ngModel>
+
+											<div *ngIf="(title.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="title.errors?.['required']">Title is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="form__group">
-											<textarea id="text" name="text" class="form__textarea" placeholder="Description"></textarea>
+											<textarea id="text" name="text" class="form__textarea" placeholder="Description" name="description" required #description="ngModel" ngModel></textarea>
+
+											<div *ngIf="(description.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="description.errors?.['required']">Description is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
 									<div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
-											<input type="text" class="form__input" placeholder="Release year">
+											<input type="text" class="form__input" placeholder="Release year" name="releaseyear" required #releaseyear="ngModel" ngModel>
+
+											<div *ngIf="(releaseyear.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="releaseyear.errors?.['required']">ReleaseYear is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<!-- <div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
 											<input type="text" class="form__input" placeholder="Running timed in minutes">
 										</div>
-									</div>
+									</div> -->
 
 									<div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
-											<select class="js-example-basic-single" id="quality" style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
-												<option value="selected" selected>Quality</option>
+											<select class="js-example-basic-single" id="quality" name="quality" required #quality="ngModel" ngModel style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
+												<option value="" selected>-Quality-</option>
 												<option value="FullHD">FullHD</option>
 												<option value="HD">HD</option>
 											</select>
+
+											<div *ngIf="(quality.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="quality.errors?.['required']">Quality is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
 
 									<div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
-											<select class="js-example-basic-single" id="quality" style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
-												<option value="selected" selected>Genre</option>
+											<select class="js-example-basic-single" id="genre" name="genre" required #genre="ngModel" ngModel style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
+												<option value="" selected>-Genre-</option>
 												<option value="Action">Action</option>
 												<option value="Animation">Animation</option>
 												<option value="Comedy">Comedy</option>
@@ -86,6 +111,11 @@
 												<option value="Otheer">Otheer</option>
 
 											</select>
+
+											<div *ngIf="(genre.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="genre.errors?.['required']">Genre is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
@@ -95,12 +125,12 @@
 
 									
 
-									<div class="col-12">
+									<!-- <div class="col-12">
 										<div class="form__gallery">
 											<label id="gallery1" for="form__gallery-upload">Upload photos</label>
 											<input data-name="#gallery1" id="form__gallery-upload" name="gallery" class="form__gallery-upload" type="file" accept=".png, .jpg, .jpeg" multiple>
 										</div>
-									</div>
+									</div> -->
 
 									<div class="col-12">
 										<div class="form__group">
@@ -134,13 +164,24 @@
 									<div class="col-12 col-lg-6">
 										<div class="form__video">
 											<label id="movie1" for="form__video-upload">Upload video</label>
-											<input data-name="#movie1" id="form__video-upload" name="movie" class="form__video-upload" type="file" accept="video/mp4,video/x-m4v,video/*">
+											<input data-name="#movie1" id="form__video-upload" name="video" class="form__video-upload" type="file" accept="video/mp4,video/x-m4v,video/*" required #video="ngModel" ngModel>
 										</div>
+
+										
+										<div *ngIf="(video.touched || editvideo.submitted)" class="invalid-feedback" style="margin-top: -20px;">
+											<div *ngIf="video.errors?.['required']">Video is required**</div>	
+										</div>
+
 									</div>
 
 									<div class="col-12 col-lg-6">
 										<div class="form__group form__group--link">
-											<input type="text" class="form__input" placeholder="or add a link">
+											<input type="text" class="form__input" placeholder="Upload Subtitle" name="subtitle" required #subtitle="ngModel" ngModel>
+
+											<div *ngIf="(subtitle.touched || editvideo.submitted)" class="invalid-feedback">
+												<div *ngIf="subtitle.errors?.['required']">Subtitle is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
