@@ -6,3 +6,31 @@
 .form__img label{
     color: rgb(160, 160, 160);
 }
+
+.invalid-feedback{
+    color: rgb(160, 160, 160);
+    font-size: 14px;
+}
+
+
+/* tags */
+.example-chip-list {
+    width: 100%;
+    color:#fff; 
+    background:#151f30;
+     border: 1px solid transparent; 
+     outline: none; 
+     /* height:60px;  */
+     border-radius: 16px; 
+     padding: 0 20px; 
+     padding-bottom: 20px;
+     font-size: 14px;
+  }
+  mat-chip{
+    background-color: white;
+    color:#131720;
+    height: 10px;
+  }
+  mat-icon{
+    color: #151f30;
+  }

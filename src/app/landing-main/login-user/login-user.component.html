@@ -6,7 +6,7 @@
     <img src="https://svgshare.com/i/JcM.svg">
   </div>
   <div class="login-content">
-    <form action="index.html">
+    <form class="login" #login="ngForm" (ngSubmit)="userlogin()">
       <img src="https://svgshare.com/i/Jcf.svg">
       <h2 class="title">User Login</h2>
       <div class="input-div one">
@@ -15,18 +15,29 @@
         </div>
         <div class="div">
           <!-- <h5>Username</h5> -->
-          <input type="text" placeholder="Username" class="input">
-        </div>
+          <input type="text" placeholder="Username" class="input" name="username" required #username="ngModel" ngModel>
+          </div>
       </div>
+
+      <div *ngIf="(username.touched || login.submitted)" class="invalid-feedback" style="margin-top:-20px;">
+        <div *ngIf="username.errors?.['required']"> Username is required**</div>	
+      </div>
+
       <div class="input-div pass">
         <div class="i">
           <i class="fas fa-lock"></i>
         </div>
         <div class="div">
           <!-- <h5>Password</h5> -->
-          <input type="password" placeholder="Password" class="input">
+          <input type="password" placeholder="Password" class="input"  name="password" required #password="ngModel" ngModel>
         </div>
       </div>
+
+      <div *ngIf="(password.touched || login.submitted)" class="invalid-feedback" style="margin-top:-20px;">
+        <div *ngIf="password.errors?.['required']"> Password is required**</div>	
+      </div>
+
+
       <a href="#">Forgot Password?</a>
       <input type="submit" class="btn" value="Login">
     </form>
