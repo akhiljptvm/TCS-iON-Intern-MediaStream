@@ -18,6 +18,11 @@ export class SignupUserComponent implements OnInit {
   confirm:any = false
   constructor(private serv:LandingServiceService,private router:Router,private route:ActivatedRoute) { }
   
+  usrsignup(){
+    console.log("account created");
+  }
+
+
   ngOnInit(): void {
   }
  

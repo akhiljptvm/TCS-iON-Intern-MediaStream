@@ -10,6 +10,8 @@ export class NavbarComponent implements OnInit {
   permitted = true;
 
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+  searchBoxTxt: string = '';
   constructor() { }
 
   ngOnInit(): void {

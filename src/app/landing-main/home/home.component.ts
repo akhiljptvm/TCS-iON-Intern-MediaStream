@@ -12,6 +12,9 @@ import {LandingServiceService} from 'src/app/landing-main/landing-service.servic
 export class HomeComponent implements OnInit {
   isJqueryWorking:any
   videoData:any
+
+  searchBoxTxt: string = '';
+  
    
   constructor(private UploadService:LandingServiceService,private router:Router,private route:ActivatedRoute) { }
 

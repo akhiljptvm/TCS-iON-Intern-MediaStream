@@ -11,7 +11,8 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 import { DisplayVideoComponent } from './display-video/display-video.component';
 import { AddVideoComponent } from './add-video/add-video.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { CategoryPipe } from './category.pipe'
 
 
 
@@ -25,6 +26,7 @@ import {FormsModule} from '@angular/forms'
     SignupUserComponent,
     DisplayVideoComponent,
     AddVideoComponent,
+    CategoryPipe,
     
   ],
   imports: [
