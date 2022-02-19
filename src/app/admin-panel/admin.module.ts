@@ -22,6 +22,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { TagsListComponent } from './tags-list/tags-list.component';
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -38,6 +39,7 @@ import { TagsListComponent } from './tags-list/tags-list.component';
     UsersListComponent,
     EditUserComponent,
     TagsListComponent,
+    
     
   ],
   imports: [
