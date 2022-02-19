@@ -197,7 +197,7 @@ html {
     top: 0;
   }
   .header__nav-link {
-    font-size: 14px;
+    font-size: 12px;
     color: #e0e0e0;
     line-height: 22px;
     height: 22px;
@@ -243,6 +243,9 @@ html {
   .header__nav-item {
     margin-bottom: 20px;
     position: relative;
+  }
+  .header__nav-item .header__nav-link {
+    font-size: 17px;
   }
   .header__nav-item:last-child {
     margin-bottom: 0;
@@ -430,6 +433,10 @@ html {
     justify-content: flex-start;
     align-items: center;
   }
+  .header__actions form {
+    margin-left: -100px;
+  }
+ header__nav
   .header__search {
     margin-right: 30px;
   }

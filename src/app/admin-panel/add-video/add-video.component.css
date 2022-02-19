@@ -20,6 +20,6 @@ mat-icon{
 }
 
 .invalid-feedback{
-  color: rgb(160, 160, 160);
+  color: rgb(240, 6, 6);
   font-size: 14px;
 }

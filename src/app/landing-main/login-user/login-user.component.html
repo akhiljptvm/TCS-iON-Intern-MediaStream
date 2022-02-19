@@ -20,7 +20,7 @@
       </div>
 
       <div *ngIf="(username.touched || login.submitted)" class="invalid-feedback" style="margin-top:-20px;">
-        <div *ngIf="username.errors?.['required']"> Username is required**</div>	
+        <div  *ngIf="username.errors?.['required']"> Username is required**</div>	
       </div>
 
       <div class="input-div pass">
@@ -39,7 +39,9 @@
 
 
       <a href="#">Forgot Password?</a>
-      <input type="submit" class="btn" value="Login">
+      <input type="submit" class="btn" style="font-weight: bold;" value="Login">
+      <h2>OR</h2>
+      <a class="btn" routerLink="../signup" style="text-align: center;padding-top: 10px;color: rgb(255, 255, 255);font-weight: bolder;text-transform: none;">Create Your Account</a>
     </form>
   </div>
 </div>
