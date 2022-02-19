@@ -7,30 +7,35 @@
       <div class="col-12">
         <div class="sign__content">
           <!-- registration form -->
-          <form action="#" class="sign__form">
-            <a href="index.html" class="sign__logo">
+          <form  class="sign__form" ngModel>
+            <a  class="sign__logo">
               <h2>Sign Up</h2> 
               <!-- <img src="../../../assets/images/admin/logo2.png"  alt=""> -->
             </a>
 
             <div class="sign__group">
-              <input type="text" class="sign__input" placeholder="Name">
+              <input type="text" class="sign__input" placeholder="Name" name="name" [(ngModel)]="userSignup.name" required>
             </div>
 
             <div class="sign__group">
-              <input type="text" class="sign__input" placeholder="Email">
+              <input type="text" class="sign__input" [(ngModel)]="userSignup.email" name="email" placeholder="Email" required>
             </div>
 
             <div class="sign__group">
-              <input type="password" class="sign__input" placeholder="Password">
+              <input type="password" class="sign__input" [(ngModel)]="userSignup.password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="sign__group">
+              <input type="password" class="sign__input" [(ngModel)]="userSignup.repeatpassword" name="repeat" placeholder="Confirm Password" required>
+              <label for="remember" style="color: red;font-size: 18px;margin-left: 10px;" *ngIf="confirm">Passwords doesnot match</label>
             </div>
 
             <div class="sign__group sign__group--checkbox">
-              <input id="remember" name="remember" type="checkbox" checked="checked">
+              <input id="remember" name="remember" type="checkbox" name="1"  checked="checked" required>
               <label for="remember">I agree to the <a href="#">Privacy policy</a></label>
             </div>
             
-            <button class="sign__btn" type="button">Sign up</button>
+            <button class="sign__btn" type="submit" (click)="addUser()">Sign up</button>
 
             <span class="sign__delimiter">or</span>
 

@@ -174,13 +174,13 @@
 										<span>5</span>
 									</a>
 								</li>
-
+<!-- 
 								<li class="nav-item">
 									<a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">
 										<h4>Reviews</h4>
 										<span>3</span>
 									</a>
-								</li>
+								</li> -->
 							</ul>
 							<!-- end tabs nav -->
 
@@ -306,17 +306,52 @@
 										</ul>
 									</div>
 
-									<form action="#" class="comments__form">
+									<form class="comments__form" #review="ngForm"  (submit)="AddComment()">
 										<div class="sign__group">
-											<textarea id="text" name="text" class="sign__textarea" placeholder="Add comment"></textarea>
+											<div class="col-12 col-md-9 col-lg-10 col-xl-9">
+												<div class="sign__group">
+													<input type="text" name="title" class="sign__input" #title="ngModel" [(ngModel)]="comment.name" placeholder="Name" ngModel=""equired> 
+													<div *ngIf="(title.touched || review.submitted)" class="invalid-feedback" style="margin-top:-20px;color: red;">
+														<div  *ngIf="title.errors?.['required']"> Name is required**</div>	
+													  </div>
+												</div>
+											
+											</div>
+										
+
+											<div class="col-12 col-md-3 col-lg-2 col-xl-3">
+												<div class="sign__group">
+													<select name="rating" id="select" class="sign__select"  [(ngModel)]="comment.rating" #rating="ngModel" required>
+														<option value="">Rating</option>
+														<option value="10">10</option>
+														<option value="9">9</option>
+														<option value="8">8</option>
+														<option value="7">7</option>
+														<option value="6">6</option>
+														<option value="5">5</option>
+														<option value="4">4</option>
+														<option value="3">3</option>
+														<option value="2">2</option>
+														<option value="1">1</option>
+													</select>
+													<div *ngIf="(rating.touched || review.submitted)" class="invalid-feedback" style="margin-top:-20px;color: red;">
+														<div  *ngIf="rating.errors?.['required']"> Rating is required**</div>	
+													  </div>
+												</div>
+												
+											</div>
+											<textarea id="text" name="comments" #comments="ngModel"  [(ngModel)]="comment.review"  class="sign__textarea" placeholder="Add comment" required></textarea>
+											<div *ngIf="(comments.touched || review.submitted)" class="invalid-feedback" style="margin-top:-20px;color: red;">
+												<div  *ngIf="comments.errors?.['required']"> Comment is required**</div>	
+											  </div>
 										</div>
-										<button type="button" class="sign__btn">Send</button>
+										<button type="submit" class="sign__btn">Send</button>
 									</form>
 								</div>
 								<!-- end comments -->
 
 								<!-- reviews -->
-								<div class="tab-pane fade" id="tab-2" role="tabpanel">
+								<!-- <div class="tab-pane fade" id="tab-2" role="tabpanel">
 									<ul class="reviews__list">
 										<li class="reviews__item">
 											<div class="reviews__autor">
@@ -374,9 +409,11 @@
 													</select>
 												</div>
 											</div>
-
-											<div class="col-12">
+                                          
+										comment -->
+											<!-- <div class="col-12">
 												<div class="sign__group">
+													
 													<textarea id="text2" name="text2" class="sign__textarea" placeholder="Add review"></textarea>
 												</div>
 											</div>
@@ -386,7 +423,7 @@
 											</div>
 										</div>
 									</form>
-								</div>
+								</div> --> -->
 								<!-- end reviews -->
 							</div>
 							<!-- end tabs -->		
