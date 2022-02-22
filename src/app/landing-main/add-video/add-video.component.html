@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+
 <app-navbar></app-navbar>
 	<!-- main content -->
 	<main class="main1">
@@ -56,7 +58,7 @@
 										</div>
 									</div>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
 											<input type="text" class="form__input" name="releaseYear" [(ngModel)]="uploadVideo.releaseYear"  placeholder="Release year" required #releaseYear="ngModel">
 
@@ -67,7 +69,7 @@
 										</div>
 									</div>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<!-- <div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
 											<input type="text" class="form__input" placeholder="Tags.." name="tag" [(ngModel)]="uploadVideo.tags" #tag="ngModel" required>
 
@@ -75,9 +77,9 @@
 												<div *ngIf="tag.errors?.['required']">Video tag is required**</div>	
 											</div>
 										</div>
-									</div>
+									</div> -->
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
 											<select class="js-example-basic-single" [(ngModel)]="uploadVideo.quality" name="quality" #quality="ngModel" required  style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;" >
 												<option value="" selected>-Quality-</option>
@@ -91,7 +93,7 @@
 
 										</div>
 									</div>
-									<div class="col-12 col-sm-6 col-lg-3">
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
 											<select class="js-example-basic-single" id="quality" name="genre"  [(ngModel)]="uploadVideo.genre" #genre="ngModel" required style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
 												<option value="" selected>-Genre-</option>
@@ -123,7 +125,7 @@
 									<!-- tags -->
 
 
-									<!-- <div class="col-12">
+									<div class="col-12">
 										<div class="form__group">
 											<mat-form-field class="example-chip-list" appearance="fill">
 												
@@ -142,7 +144,7 @@
 												</mat-chip-list>
 											  </mat-form-field>
 										</div>
-									</div> -->
+									</div>
 
 									<!-- tags -->
 

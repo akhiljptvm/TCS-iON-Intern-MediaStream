@@ -11,8 +11,14 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 import { DisplayVideoComponent } from './display-video/display-video.component';
 import { AddVideoComponent } from './add-video/add-video.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import { CategoryPipe } from './category.pipe'
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { CategoryPipe } from './category.pipe';
+
+
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 
@@ -36,7 +42,11 @@ import { CategoryPipe } from './category.pipe'
     NgbAlertModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatFormFieldModule
   ]
 })
 export class LandingMainModule { }

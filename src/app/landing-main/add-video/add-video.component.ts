@@ -3,6 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LandingServiceService } from '../landing-service.service'
 import Swal from 'sweetalert2';
 // import * as $ from 'jquery';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
+
+
+export interface Tag {
+  name: string;
+}
+
 
 
 @Component({
@@ -13,6 +21,32 @@ import Swal from 'sweetalert2';
 export class AddVideoComponent implements OnInit {
 
 
+      // tag ts
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  tags: Tag[] = [{name: 'video'}, {name: 'comedy'}, {name: 'add tag'}];
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.tags.push({name: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(tag: Tag): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+        // end tags ts
  
 
  
