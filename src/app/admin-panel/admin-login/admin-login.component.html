@@ -8,8 +8,9 @@
                 <div class="sign__content">
                     <!-- authorization form -->
                     <form class="sign__form" name="form" (ngSubmit)="onformsubmit(f)" #f="ngForm">
-                        <a href="index.html" class="sign__logo">
-                            <img src="assets/images/logo.svg" alt="">
+                        <a class="sign__logo">
+                            <!-- <img src="assets/images/logo.svg" alt=""> -->
+                            <h2 style="color: rgb(104, 135, 240);">ADMIN LOGIN</h2>
                         </a>
 
                         <div class="sign__group">
@@ -34,7 +35,7 @@
                             <label for="remember">Remember me</label>
                         </div>
                         
-                        <button class="sign__btn" type="submit">Sign in</button>
+                        <button class="sign__btn" type="submit" (click)="adminLogin()" >Sign in</button>
 
                         <span class="sign__delimiter">or</span>
 

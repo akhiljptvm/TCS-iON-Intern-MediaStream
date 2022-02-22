@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   onSubmit(){
     console.log("success");
@@ -19,6 +20,9 @@ export class AdminLoginComponent implements OnInit {
 
   onformsubmit(f:any){
     console.log(f);
+  }
+  adminLogin() {
+    this.router.navigate(["adminpage"])
   }
 
 }

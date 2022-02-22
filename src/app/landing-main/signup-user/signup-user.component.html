@@ -14,7 +14,7 @@
             </a>
 
             <div class="sign__group">
-              <input type="text" class="sign__input" placeholder="Name" name="name" autocomplete="off" #name="ngModel" minlength="3" required ngModel>
+              <input type="text" class="sign__input" placeholder="Name" name="name" autocomplete="off" [(ngModel)]="userSignup.name" #name="ngModel" minlength="3" required ngModel>
 
               <div *ngIf="(name.touched || signup.submitted)" class="invalid-feedback">
                 <div *ngIf="name.errors?.['required']">Name is required**</div>	
@@ -26,7 +26,7 @@
 
            
             <div class="sign__group">
-              <input type="text" class="sign__input" placeholder="Email" name="email" autocomplete="off" #email="ngModel" required ngModel email>
+              <input type="text" class="sign__input" placeholder="Email" [(ngModel)]="userSignup.email" name="email" autocomplete="off" #email="ngModel" required ngModel email>
 
               <div *ngIf="(email.touched || signup.submitted)" class="invalid-feedback">
                 <div *ngIf="email.errors?.['required']">Email is required**</div>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="sign__group">
-              <input type="password" class="sign__input" placeholder="Password" name="pwd" #pwd="ngModel" required ngModel pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" >
+              <input type="password" class="sign__input" placeholder="Password"  [(ngModel)]="userSignup.password" name="pwd" #pwd="ngModel" required ngModel pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" >
 
               <div *ngIf="(pwd.touched || signup.submitted)" class="invalid-feedback">
                 <div *ngIf="pwd.errors?.['required']">Password is required**</div>
@@ -45,13 +45,17 @@
               </div>
 
             </div>
+            <div class="sign__group">
+              <input type="password" class="sign__input" [(ngModel)]="userSignup.repeatpassword" name="repeat" placeholder="Confirm Password" required>
+              <label for="remember" style="color: red;font-size: 18px;margin-left: 10px;" *ngIf="confirm">Passwords doesnot match</label>
+            </div>
 
             <div class="sign__group sign__group--checkbox">
-              <input id="remember" name="remember" type="checkbox" checked="checked">
+              <input id="remember" name="remember" type="checkbox" name="1"  checked="checked" required>
               <label for="remember">I agree to the <a href="#">Privacy policy</a></label>
             </div>
             
-            <button class="sign__btn" type="button">Sign up</button>
+            <button class="sign__btn" type="submit" (click)="addUser()">Sign up</button>
 
             <span class="sign__delimiter">or</span>
 

@@ -48,8 +48,6 @@ export class AddVideoComponent implements OnInit {
 
         // end tags ts
  
-
- 
   selectedFile: any;
   formData: any = {};
   fd = new FormData();
@@ -59,6 +57,7 @@ export class AddVideoComponent implements OnInit {
     videoTitle: "",
     video: "",
     thumbnail: "",
+    category:"",
     description: "",
     releaseYear: "",
     subtitle:"",
@@ -102,6 +101,11 @@ export class AddVideoComponent implements OnInit {
   }
   //upload Video
   videoFile(event: any) {
+
+    // const currentVideo = evt.target as HTMLVideoElement;
+    // if (currentVideo.videoWidth <= 720 && currentVideo.videoHeight <= 540) {
+    //   alert("resolution is too low,upload greater than 720p")
+    // }
     console.log("checkkkkk")
     console.log("video function",event.target.files[0])
     this.selectedFile = <File>event.target.files[0];
@@ -140,5 +144,13 @@ export class AddVideoComponent implements OnInit {
       }
     })
   }
+//video resolution breakpoint
+  // videoResolutionTest(evt: KeyboardEvent) {
+  //   const currentVideo = evt.target as HTMLVideoElement;
+
+  //   if (currentVideo.videoWidth <= 720 && currentVideo.videoHeight <= 540) {
+    
+  //   }
+  // }
 
 }

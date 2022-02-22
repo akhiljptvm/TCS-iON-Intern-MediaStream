@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LandingServiceService} from '../../landing-main/landing-service.service'
 
 @Component({
   selector: 'app-users-list',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
+  UserList:any
 
-  constructor() { }
+  constructor(private serve:LandingServiceService) { }
 
   ngOnInit(): void {
+    this.serve.userList().subscribe((data) => {
+      this.UserList = data;
+    })
   }
 
 }

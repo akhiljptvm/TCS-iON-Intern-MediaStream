@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LandingServiceService} from '../landing-service.service'
+import { Router } from '@angular/router';
+import { LandingServiceService } from '../landing-service.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-display-video',
@@ -7,9 +9,15 @@ import {LandingServiceService} from '../landing-service.service'
   styleUrls: ['./display-video.component.css']
 })
 export class DisplayVideoComponent implements OnInit {
- 
+  
+  comment = {
+    name:"",
+    review: "",
+    rating:""
+  }
+  
   singleVideo:any
-  constructor(private Serve:LandingServiceService) { }
+  constructor(private Serve:LandingServiceService,private router:Router) { }
 
   ngOnInit(): void {
     let videoView = localStorage.getItem("singleVid");
@@ -17,5 +25,12 @@ export class DisplayVideoComponent implements OnInit {
       this.singleVideo = data
     })
   }
+  AddComment() {
+    this.Serve.addReview(this.comment).subscribe((data) => {
+      Swal.fire('✅Successfully Added')
+      this.router.navigate(['/'])
+    
+    })
+}
 
 }

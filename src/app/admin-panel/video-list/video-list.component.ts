@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {LandingServiceService} from '../../landing-main/landing-service.service'
 
 @Component({
   selector: 'app-video-list',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent implements OnInit {
+  videoData:any
 
-  constructor() { }
+  constructor(private serve:LandingServiceService,private router:Router) { }
 
   ngOnInit(): void {
+    this.serve.videoView().subscribe((data) => {
+      this.videoData = data
+    })
   }
 
 }

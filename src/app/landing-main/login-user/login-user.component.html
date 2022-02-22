@@ -15,12 +15,12 @@
         </div>
         <div class="div">
           <!-- <h5>Username</h5> -->
-          <input type="text" placeholder="Username" class="input" name="username" required #username="ngModel" ngModel>
+          <input type="text" placeholder="Email" class="input" name="username" required #username="ngModel" [(ngModel)]="userLogin.email" ngModel>
           </div>
       </div>
 
       <div *ngIf="(username.touched || login.submitted)" class="invalid-feedback" style="margin-top:-20px;">
-        <div  *ngIf="username.errors?.['required']"> Username is required**</div>	
+        <div  *ngIf="username.errors?.['required']"> Email is required**</div>	
       </div>
 
       <div class="input-div pass">
@@ -29,7 +29,7 @@
         </div>
         <div class="div">
           <!-- <h5>Password</h5> -->
-          <input type="password" placeholder="Password" class="input"  name="password" required #password="ngModel" ngModel>
+          <input type="password" placeholder="Password" class="input"  name="password" required #password="ngModel" [(ngModel)]="userLogin.password" ngModel>
         </div>
       </div>
 
@@ -39,8 +39,9 @@
 
 
       <a href="#">Forgot Password?</a>
-      <input type="submit" class="btn" style="font-weight: bold;" value="Login">
+      <input type="submit" class="btn" style="font-weight: bold;" (click)="loginUser()"  value="Login">
       <h2>OR</h2>
+      <a style="margin-right:100px;color: rgb(255, 104, 16);">Dont have Account?</a>
       <a class="btn" routerLink="../signup" style="text-align: center;padding-top: 10px;color: rgb(255, 255, 255);font-weight: bolder;text-transform: none;">Create Your Account</a>
     </form>
   </div>
