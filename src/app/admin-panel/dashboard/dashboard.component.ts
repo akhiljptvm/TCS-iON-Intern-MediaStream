@@ -10,14 +10,17 @@ import { LandingServiceService} from '../../landing-main/landing-service.service
 export class DashboardComponent implements OnInit {
    
   vidCount: any
-  tagCount:any
+  tagCount: any
+  commentCount:any
   constructor(private serve:LandingServiceService,private router:Router) { }
 
   ngOnInit(): void {
     this.serve.videoView().subscribe((data) => {
       let count = data.length;
       this.vidCount = count;
-      
+      this.serve.reviewList().subscribe((res) => {
+        this.commentCount = res.length
+      })
     })
   }
 

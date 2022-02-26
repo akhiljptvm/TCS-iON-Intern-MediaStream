@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service'
 import Swal from 'sweetalert2';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-login-user',
@@ -15,7 +16,7 @@ export class LoginUserComponent implements OnInit {
     password: ''
   }
 
-  constructor(private auth:AuthService,private router:Router,private route:ActivatedRoute) { }
+  constructor(public auth:AuthService,private router:Router,private route:ActivatedRoute) { }
 
   userlogin(){
     console.log("login successfully")
@@ -25,7 +26,7 @@ export class LoginUserComponent implements OnInit {
   }
 
 
-  loginUser() {
+  loginUsers() {
     console.log("happend")
     if(this.userLogin.email==""&&this.userLogin.password=="") {
       Swal.fire(
@@ -35,11 +36,10 @@ export class LoginUserComponent implements OnInit {
     }
     console.log("data reached first")
     this.auth.loginUser(this.userLogin)
-    .subscribe(
-      response => {
+    .subscribe(data => {
         console.log("data reached ")
         // let result = response;
-        if (response) {
+        if (data) {
           // localStorage.setItem('token', response.token)
         //   localStorage.setItem('add', response.add)
         //   localStorage.setItem('edit', response.edit)
@@ -61,28 +61,28 @@ export class LoginUserComponent implements OnInit {
             'Warning!!',
             'admin not found!',
             'error')
-            .then (
-              refresh =>{
+            // .then (
+              // refresh =>{
                 let currentUrl = this.router.url;
                 this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
                     this.router.navigate([currentUrl]);
-                });    
+                // });    
              }) 
-        }
-        // if (this.userLogin.email != response.user && this.userLogin.password != response.user) {
+                 }
+      // if (this.userLogin.email != data.user && this.userLogin.password != data.user) {
           
-        //   Swal.fire(
-        //     'Warning!!',
-        //     'admin not found!',
-        //     'error')
-        //     .then (
-        //       refresh =>{
-        //         let currentUrl = this.router.url;
-        //         this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        //             this.router.navigate([currentUrl]);
-        //         });    
-        //     }) 
-        // }
+      //     Swal.fire(
+      //        'Warning!!',
+      //        'admin not found!',
+      //        'error')
+      //        .then (
+      //          refresh =>{
+      //            let currentUrl = this.router.url;
+      //           this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      //                this.router.navigate([currentUrl]);
+      //           });    
+      //      }) 
+      //   }
         
       })
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {LandingServiceService} from '../../landing-main/landing-service.service'
 
 @Component({
@@ -10,12 +10,17 @@ import {LandingServiceService} from '../../landing-main/landing-service.service'
 export class VideoListComponent implements OnInit {
   videoData:any
 
-  constructor(private serve:LandingServiceService,private router:Router) { }
+  constructor(private serve:LandingServiceService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.serve.videoView().subscribe((data) => {
       this.videoData = data
     })
+  }
+
+  viewVid(data: any) {
+    localStorage.setItem("singleVideo", data._id.toString());
+    this.router.navigate(["MainPage/singlevideo"], { relativeTo: this.route });
   }
 
 }

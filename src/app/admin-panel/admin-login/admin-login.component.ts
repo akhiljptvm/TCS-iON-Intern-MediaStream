@@ -21,6 +21,7 @@ export class AdminLoginComponent implements OnInit {
   onformsubmit(f:any){
     console.log(f);
   }
+  
   adminLogin() {
     this.router.navigate(["adminpage"])
   }
