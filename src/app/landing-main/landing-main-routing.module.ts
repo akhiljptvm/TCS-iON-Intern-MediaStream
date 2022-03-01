@@ -9,7 +9,7 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "home",
     component:HomeComponent
   },
   {
@@ -19,6 +19,11 @@ const routes: Routes = [
   {
     path: "signup",
     component:SignupUserComponent
+  },
+  {
+    path: "",
+    redirectTo: "login-user",
+    pathMatch:"full"
   },
   {
     path:"video",

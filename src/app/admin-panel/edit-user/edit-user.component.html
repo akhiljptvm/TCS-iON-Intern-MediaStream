@@ -7,7 +7,7 @@
             <!-- main title -->
             <div class="col-12">
                 <div class="main__title">
-                    <h2>Edit User</h2>
+                    <h2>Admin Signup</h2>
                 </div>
             </div>
             <!-- end main title -->
@@ -22,8 +22,8 @@
                         </div>
                         <!-- or red -->
                         <div class="profile__meta profile__meta--green">
-                            <h3>Username <span>(Approved)</span></h3>
-                            <span>FlixTV ID: 23562</span>
+                            <h3>Admin <span>(Approved)</span></h3>
+                            <span>PlayTV ID: 23562</span>
                         </div>
                     </div>
                     <!-- end profile user -->
@@ -56,8 +56,8 @@
 
                                             <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="sign__group">
-                                                    <label class="sign__label" for="username">Login</label>
-                                                    <input id="username" type="text" name="username" class="sign__input" placeholder="User123" required #username="ngModel" ngModel>
+                                                    <label class="sign__label" for="username">UserName</label>
+                                                    <input id="username" type="text" name="username" class="sign__input" [(ngModel)]="adminLog.username" required #username="ngModel" ngModel>
 
                                                     <div *ngIf="(username.touched || edituser.submitted)" class="invalid-feedback">
                                                         <div *ngIf="username.errors?.['required']">Username is required**</div>                                                       
@@ -69,7 +69,7 @@
                                             <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="sign__group">
                                                     <label class="sign__label" for="email">Email</label>
-                                                    <input id="email" type="text" name="email" class="sign__input" placeholder="email@email.com" required #email="ngModel" ngModel>
+                                                    <input id="email" type="text" name="email" class="sign__input"  [(ngModel)]="adminLog.email"  required #email="ngModel" ngModel>
 
                                                     <div *ngIf="(email.touched || edituser.submitted)" class="invalid-feedback">
                                                         <div *ngIf="email.errors?.['required']">Email is required**</div>                                                       
@@ -80,11 +80,11 @@
 
                                             <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="sign__group">
-                                                    <label class="sign__label" for="firstname">First name</label>
-                                                    <input id="firstname" type="text" name="firstname" class="sign__input" placeholder="John" required #firstname="ngModel" ngModel>
+                                                    <label class="sign__label" for="password">Password</label>
+                                                    <input id="password" type="text" name="password"  [(ngModel)]="adminLog.password" class="sign__input" placeholder="****" required #password="ngModel" ngModel>
 
-                                                    <div *ngIf="(firstname.touched || edituser.submitted)" class="invalid-feedback">
-                                                        <div *ngIf="firstname.errors?.['required']">Firstname is required**</div>                                                       
+                                                    <div *ngIf="(password.touched || edituser.submitted)" class="invalid-feedback">
+                                                        <div *ngIf="password.errors?.['required']">password is required**</div>                                                       
                                                     </div>
 
                                                 </div>
@@ -92,11 +92,11 @@
 
                                             <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                                                 <div class="sign__group">
-                                                    <label class="sign__label" for="lastname">Last name</label>
-                                                    <input id="lastname" type="text" name="lastname" class="sign__input" placeholder="Doe" required #lastname="ngModel" ngModel>
+                                                    <label class="sign__label" for="repeatPassword">Repeat Password</label>
+                                                    <input id="repeatPassword" type="text" name="repeatPassword"  [(ngModel)]="adminLog.repeatPass" class="sign__input"  required #repeatPassword="ngModel" ngModel>
 
-                                                    <div *ngIf="(lastname.touched || edituser.submitted)" class="invalid-feedback">
-                                                        <div *ngIf="lastname.errors?.['required']">Lastname is required**</div>                                                       
+                                                    <div *ngIf="(repeatPassword.touched || edituser.submitted)" class="invalid-feedback">
+                                                        <div *ngIf="repeatPassword.errors?.['required']">Repeat Password is required**</div>                                                       
                                                     </div>
 
                                                 </div>
@@ -106,12 +106,15 @@
 
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <div class="form__group">
-                                                    <select class="js-example-basic-single" id="rights" name="rights" required #rights="ngModel" ngModel style="color:#fff; width:220%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
+                                                    <select class="js-example-basic-single" id="rights" name="rights"  [(ngModel)]="adminLog.Rights" required #rights="ngModel" ngModel style="color:#fff; width:220%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
                                                         <option value="" selected>-Rights-</option>
                                                         <option value="User">User</option>
                                                         <option value="Moderator">Admin</option>
                                                         <option value="Admin">Super Admin</option>
                                                     </select>
+                                                    <div>
+                                                        <input type="checkbox" name="test" value="sdsd" id="">
+                                                    </div>
 
                                                     <div *ngIf="(rights.touched || edituser.submitted)" class="invalid-feedback">
                                                         <div *ngIf="rights.errors?.['required']">Choose any one</div>                                                       
@@ -123,7 +126,7 @@
                                             
 
                                             <div class="col-12">
-                                                <button class="sign__btn" type="button">Save</button>
+                                                <button class="sign__btn" type="submit" (click)="AddAdmin()">Save</button>
                                             </div>
                                         </div>
                                     </form>

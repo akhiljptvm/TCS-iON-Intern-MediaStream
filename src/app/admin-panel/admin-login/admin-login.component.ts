@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LandingServiceService } from '../../landing-main/landing-service.service'
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -9,13 +11,19 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  adminLog = {
+    email: "",
+    password:""
+  }
+
+  constructor(private router:Router,private Serv:LandingServiceService) { }
 
   onSubmit(){
     console.log("success");
   }
 
   ngOnInit(): void {
+
   }
 
   onformsubmit(f:any){
@@ -23,7 +31,31 @@ export class AdminLoginComponent implements OnInit {
   }
   
   adminLogin() {
-    this.router.navigate(["adminpage"])
+    this.Serv.adminLogin(this.adminLog).subscribe((data) => {
+      if (data) {
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Successfully LoggedIn',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.router.navigate(["/adminpage"])
+      } else {
+        Swal.fire(
+          'Warning!!',
+          'admin not found!',
+          'error')
+          .then (
+            refresh =>{
+              let currentUrl = this.router.url;
+              this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                  this.router.navigate([currentUrl]);
+              });    
+           }) 
+      }
+    })
+    // this.router.navigate(["adminpage"])
   }
 
 }

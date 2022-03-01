@@ -15,6 +15,7 @@ export class DisplayVideoComponent implements OnInit {
     review: "",
     rating:""
   }
+  reviewData:any
   
   singleVideo:any
   constructor(private Serve:LandingServiceService,private router:Router) { }
@@ -24,6 +25,10 @@ export class DisplayVideoComponent implements OnInit {
     this.Serve.getSingleVid(videoView).subscribe((data) => {
       this.singleVideo = data
     })
+
+    this.Serve.reviewList().subscribe((data2) => {
+      this.reviewData = data2;
+   })
   }
   AddComment() {
     this.Serve.addReview(this.comment).subscribe((data) => {

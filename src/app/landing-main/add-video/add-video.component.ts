@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 // import * as $ from 'jquery';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 export interface Tag {
@@ -20,7 +21,9 @@ export interface Tag {
 })
 export class AddVideoComponent implements OnInit {
 
-
+  videoUrl:any;
+  videoSizeError: any;
+  videoSuccess:any
       // tag ts
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -66,7 +69,7 @@ export class AddVideoComponent implements OnInit {
     genre:"",
   }
 
-  constructor(private landingServ:LandingServiceService,private route:Router, private routerAct:ActivatedRoute) { }
+  constructor(private landingServ:LandingServiceService,private route:Router, private routerAct:ActivatedRoute,private sanitizer:DomSanitizer) { }
    
   onSelectFile(event:any) {
     if (event.target.files && event.target.files[0]) {
@@ -112,10 +115,10 @@ export class AddVideoComponent implements OnInit {
     this.fd.append('video', this.selectedFile, this.selectedFile.name);
   }
   //upload Subtitle
-  // subtitleFile(event: any) {
-  //   this.selectedFile = <File>event.target.files[0];
-  //   this.fd.append('subtitle', this.selectedFile, this.selectedFile.name);
-  // }
+  subtitleFile(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+    this.fd.append('subtitle', this.selectedFile, this.selectedFile.name);
+  }
 
   uploadVid() {
      
@@ -143,6 +146,27 @@ export class AddVideoComponent implements OnInit {
 
       }
     })
+  }
+
+  readVideoUrl(event: any) {
+    const files = event.target.files;
+    if (files && files[0]) {
+      this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(files[0])
+      );
+    }
+  }
+
+  getDuration(e:any) {
+    const duration = e.target.duration;
+    // this.videoSizeError = duration >= 25;
+    if (duration >= 25) {
+      this.videoSuccess = false
+       this.videoSizeError = true
+    } else {
+      this.videoSizeError = false
+      this.videoSuccess = true
+    }
   }
 //video resolution breakpoint
   // videoResolutionTest(evt: KeyboardEvent) {

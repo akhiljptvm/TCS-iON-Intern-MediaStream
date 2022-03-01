@@ -54,7 +54,7 @@ export class LoginUserComponent implements OnInit {
           // console.log("SuperAdmin logged", response.token)
           // console.log("admin logged",response.role)
         
-          this.router.navigate(['/']);
+          this.router.navigate(['/MainPage/home']);
           
         } else {
           Swal.fire(

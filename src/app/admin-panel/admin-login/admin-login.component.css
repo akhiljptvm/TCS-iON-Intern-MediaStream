@@ -10,4 +10,12 @@
     margin-top:-2px; 
     margin-bottom:10px; 
     font-size:15px; 
+}.gl:hover{
+    color: black;
+    font-weight: bolder;
+}
+.sign__social{
+    max-width: 50%;
+    margin-left: 25%;
+    text-align: center;
 }

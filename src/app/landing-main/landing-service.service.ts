@@ -23,6 +23,9 @@ export class LandingServiceService {
   getSingleVid(id: any) {
     return this.http.get<any>(`${this.server_address}/upload/vidupload/`+id)
   }
+  deleteVideo(item:any){
+    return this.http.post(`${this.server_address}/upload/vidupload/remove`,item);
+  }
 
   //?-----userlogin-----
  
@@ -35,12 +38,12 @@ export class LandingServiceService {
   }
 
   deleteUser(item:any){
-    return this.http.post(`${this.server_address}/`,item);
+    return this.http.post(`${this.server_address}/user/signup/remove`,item);
   }
 
   editUser(item: any) {
     console.log("item found at editadmin",item)
-    return this.http.post(`${this.server_address}/update`,item)
+    return this.http.post(`${this.server_address}/user/signup/update`,item)
   }
 
   //?-----userSignup----
@@ -49,11 +52,11 @@ export class LandingServiceService {
     return this.http.post(`${this.server_address}/user`,item);
   }
 
-  //?-----adminlogin-----
-  adminLogin(item:any){
-    console.log(item);
-    return this.http.post(`${this.server_address}/signup`,item);
-  }
+  // //?-----adminlogin-----
+  // adminLogin(item:any){
+  //   console.log(item);
+  //   return this.http.post(`${this.server_address}/signup`,item);
+  // }
 
   //Review 
 
@@ -75,5 +78,35 @@ export class LandingServiceService {
     return this.http.post(`${this.server_address}/review/update`,item)
   }
 
+//?-----Admin-----
+ 
+  // userLogin(user: any){
+  //   return this.http.post(`${this.server_address}/user/userLogin`,user);
+  // }
+  
+  AdminList(){
+    return this.http.get<any>(`${this.server_address}/aadmin/AdminList`);
+  }
+
+  removeAdmin(item:any){
+    return this.http.post(`${this.server_address}/admin/`,item);
+  }
+
+  // editUser(item: any) {
+  //   console.log("item found at editadmin",item)
+  //   return this.http.post(`${this.server_address}/update`,item)
+  // }
+
+  //?-----userSignup----
+  adminSignup(item:any){
+    console.log(item);
+    return this.http.post(`${this.server_address}/admin`,item);
+  }
+
+  //?-----adminlogin-----
+  adminLogin(item:any){
+    console.log(item);
+    return this.http.post(`${this.server_address}/admin/login`,item);
+  }
 
 }
