@@ -130,12 +130,12 @@ export class AddVideoComponent implements OnInit {
 
     this.landingServ.addVideo(this.fd).subscribe((data) => {
       console.log("Successfully Uploaded", data)
-      this.route.navigate(["/"])
+      this.route.navigate(["/MainPage/home"])
 
       if (data) {
         Swal.fire("Successfully Added", "success")
           .then(() => {
-            this.route.navigate(['/'], { relativeTo: this.routerAct });
+            this.route.navigate(['/MainPage/home'], { relativeTo: this.routerAct });
           })
       }
       else {
