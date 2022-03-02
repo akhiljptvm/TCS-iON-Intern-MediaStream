@@ -20,7 +20,7 @@ const routes: Routes = [
   component:DashboardComponent
 },
 {
-  path:"login-admin",
+  path:"adminLogin",
   component:AdminLoginComponent
 },
 {

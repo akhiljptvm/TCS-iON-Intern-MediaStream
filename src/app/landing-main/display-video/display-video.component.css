@@ -4,3 +4,10 @@
     border-radius: 16px;
     margin-top: 30px;
 }
+.section{
+    margin-top: -10px;
+}
+.section__bg img{
+    width: 100%;
+    object-fit: cover;
+}

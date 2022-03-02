@@ -1,6 +1,8 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+
 <app-navbar></app-navbar>
 	<!-- main content -->
-	<main class="main">
+	<main class="main1">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- main title -->
@@ -13,16 +15,21 @@
 
 				<!-- form -->
 				<div class="col-12">
-					<form action="#" class="form">
+					<form  class="form" name="form" #Upload="ngForm" (ngSubmit)="onSubmit(Upload)">
 						<div class="row">
 							<div class="col-12 col-md-5 form__cover">
 								<div class="row">
 									<div class="col-12 col-sm-6 col-md-12">
 										<div class="form__img">
 											<label for="form__img-upload">Upload thumbnail</label>
-											<input id="form__img-upload" name="thumbnail" placeholder="Upload thumbnail" type="file" (change)="onSelectFile($event)" [(ngModel)]="uploadVideo.thumbnail" (change)="thumbFile($event)" accept=".png, .jpg, .jpeg" required>
+											<input id="form__img-upload" name="thumbnail" placeholder="Upload thumbnail" type="file" (change)="onSelectFile($event)" [(ngModel)]="uploadVideo.thumbnail" (change)="thumbFile($event)" accept=".png, .jpg, .jpeg" required #thumbnail="ngModel">
 											<img id="form__img" #urlImg [src]="url" alt=" ">
 										</div>
+
+										<div *ngIf="(thumbnail.touched || Upload.submitted)" class="invalid-feedback" style="margin-top:-20px;">
+											<div *ngIf="thumbnail.errors?.['required']">Video Thumbnail is required**</div>	
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -31,40 +38,64 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="form__group">
-											<input type="text" class="form__input" name="title" [(ngModel)]="uploadVideo.videoTitle" placeholder="Title">
-										</div>
+											<input type="text" class="form__input" name="title" [(ngModel)]="uploadVideo.videoTitle" placeholder="Title" #title="ngModel" required>
+
+											<div *ngIf="(title.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="title.errors?.['required']">Video Title is required**</div>	
+											</div>
+
+										</div>	
 									</div>
 
 									<div class="col-12">
 										<div class="form__group">
-											<textarea id="text" name="description" [(ngModel)]="uploadVideo.description" class="form__textarea"  placeholder="Description" required></textarea>
+											<textarea id="text" name="description" [(ngModel)]="uploadVideo.description" class="form__textarea"  placeholder="Description" required #description="ngModel"></textarea>
+
+											<div *ngIf="(description.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="description.errors?.['required']">Video description is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
-											<input type="text" class="form__input" name="releaseYear" [(ngModel)]="uploadVideo.releaseYear"  placeholder="Release year" required>
+											<input type="text" class="form__input" name="releaseYear" [(ngModel)]="uploadVideo.releaseYear"  placeholder="Release year" required #releaseYear="ngModel">
+
+											<div *ngIf="(releaseYear.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="releaseYear.errors?.['required']">Video releaseYear is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+									<!-- <div class="col-12 col-sm-6 col-lg-3">
 										<div class="form__group">
-											<input type="text" class="form__input" placeholder="tags.." name="tag" [(ngModel)]="uploadVideo.tags">
-										</div>
-									</div>
+											<input type="text" class="form__input" placeholder="Tags.." name="tag" [(ngModel)]="uploadVideo.tags" #tag="ngModel" required>
 
-									<div class="col-12 col-sm-6 col-lg-3">
+											<div *ngIf="(tag.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="tag.errors?.['required']">Video tag is required**</div>	
+											</div>
+										</div>
+									</div> -->
+
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
-											<select class="js-example-basic-single" [(ngModel)]="uploadVideo.quality" name="quality"  style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;" >
+											<select class="js-example-basic-single" [(ngModel)]="uploadVideo.quality" name="quality" #quality="ngModel" required  style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;" >
 												<option value="" selected>-Quality-</option>
 												<option value="FullHD">FullHD</option>
 												<option value="HD">HD</option>
 											</select>
+
+											<div *ngIf="(quality.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="quality.errors?.['required']">Video quality is required**</div>	
+											</div>
+
 										</div>
 									</div>
-									<div class="col-12 col-sm-6 col-lg-3">
+									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="form__group">
-											<select class="js-example-basic-single" id="quality" name="genre"  [(ngModel)]="uploadVideo.genre" style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
+											<select class="js-example-basic-single" id="quality" name="genre"  [(ngModel)]="uploadVideo.genre" #genre="ngModel" required style="color:#fff; width:100%; background:#151f30; border: 1px solid transparent; outline: none; height:44px; border-radius: 16px; padding: 0 20px; font-size: 14px;">
 												<option value="" selected>-Genre-</option>
 												<option value="Action">Action</option>
 												<option value="Animation">Animation</option>
@@ -79,19 +110,44 @@
 												<option value="Thriller">Thriller</option>
 												<option value="Western">Western</option>
 												<option value="Otheer">Otheer</option>
-
 											</select>
+
+											<div *ngIf="(genre.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="genre.errors?.['required']">Video genre is required**</div>	
+											</div>
+
 										</div>
 									</div>
 
 									
 
-									<!-- <div class="col-12">
-										<div class="form__gallery">
-											<label id="gallery1" for="form__gallery-upload">Upload photos</label>
-											<input data-name="#gallery1" id="form__gallery-upload" name="gallery" class="form__gallery-upload" type="file" accept=".png, .jpg, .jpeg" multiple>
+									
+									<!-- tags -->
+
+
+									<div class="col-12">
+										<div class="form__group">
+											<mat-form-field class="example-chip-list" appearance="fill">
+												
+												<mat-chip-list #chipList aria-label="Fruit selection">
+												  <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+													{{tag.name}}
+													<button matChipRemove>
+													  <mat-icon>cancel</mat-icon>
+													</button>
+												  </mat-chip>
+												  <input placeholder="+Tags"
+														 [matChipInputFor]="chipList"
+														 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+														 [matChipInputAddOnBlur]="addOnBlur"
+														 (matChipInputTokenEnd)="add($event)">
+												</mat-chip-list>
+											  </mat-form-field>
 										</div>
-									</div> -->
+									</div>
+
+									<!-- tags -->
+
 								</div>
 							</div>
 
@@ -100,17 +156,35 @@
 							<div class="col-12">
 								<div class="row">
 									<div class="col-12 col-lg-6">
-										<div class="form__video">
-											<label id="movie1" for="form__video-upload">Upload video</label>
-											<input data-name="#movie1" id="form__video-upload" name="video" [(ngModel)]="uploadVideo.video" (change)="videoFile($event)" class="form__video-upload" type="file" accept="video/mp4,video/x-m4v,video/*">
+										<div class="form__video1">
+											<label id="movie1" for="form__video-upload" style="color:white;padding: 10px;"> Upload video</label>
+											<input type="file" name="" id="" style="color: white;"  name="video" (change)="readVideoUrl($event)" [(ngModel)]="uploadVideo.video" (change)="videoFile($event)"  accept="video/mp4,video/x-m4v,video/*" #video="ngModel">
+											<!-- <input  id="form__video-upload" name="video" (change)="readVideoUrl($event)" [(ngModel)]="uploadVideo.video" (change)="videoFile($event)" class="form__video-upload" type="file" accept="video/mp4,video/x-m4v,video/*" #video="ngModel" required> -->
+									</div>
+									<!-- <label id="movie1" for="form__video-upload">Upload video</label> -->
+										<p *ngIf="videoSizeError" style="color: red;padding: 10px;">Video is Above 25mins or video size is below 360p</p>
+										<p *ngIf="videoSuccess" style="color: rgb(20, 240, 0);padding: 10px;">Video is successfully meet the requirements</p>
+										
+                                          
+										<video #video style="display: none;" *ngIf="videoUrl" width="320" height="240" controls [attr.src]="videoUrl" (loadedmetadata)="getDuration($event)">
+										</video>
+										<div *ngIf="(video.touched || Upload.submitted)" class="invalid-feedback" style="margin-top:-20px;">
+											<div *ngIf="video.errors?.['required']">Video is required**</div>	
 										</div>
+
 									</div>
 
-									<!-- <div class="col-12 col-lg-6">
+									<div class="col-12 col-lg-6">
 										<div class="form__group form__group--link">
-											<input type="text"  class="form__input" placeholder="Upload subtitle" name="subtitle" [(ngModel)]="uploadVideo.subtitle" >
+											<label id="movie1" for="form__video-upload" style="color:white;padding: 10px;">Video Subtitle</label>
+											<input type="file"  class="form__input1" placeholder="subtitle" name="subtitle" [(ngModel)]="uploadVideo.subtitle" style="color: #fff;" (change)="subtitleFile($event)" #subtitle="ngModel" required>
+
+											<div *ngIf="(subtitle.touched || Upload.submitted)" class="invalid-feedback">
+												<div *ngIf="subtitle.errors?.['required']">Subtitle is required**</div>	
+											</div>
+
 										</div>
-									</div> -->
+									</div>
 
 									<div class="col-12">
 										<button type="submit" class="form__btn" name="publish" (click)="uploadVid()">publish</button>

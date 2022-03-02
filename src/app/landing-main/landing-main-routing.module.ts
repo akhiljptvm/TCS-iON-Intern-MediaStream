@@ -4,16 +4,26 @@ import { HomeComponent } from './home/home.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { DisplayVideoComponent } from './display-video/display-video.component';
 import { AddVideoComponent } from './add-video/add-video.component';
+import { SignupUserComponent } from './signup-user/signup-user.component';
 // import { VideoUploadComponent } from './video-upload/video-upload.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "home",
     component:HomeComponent
   },
   {
     path:"login-user",
     component:LoginUserComponent
+  },
+  {
+    path: "signup",
+    component:SignupUserComponent
+  },
+  {
+    path: "",
+    redirectTo: "login-user",
+    pathMatch:"full"
   },
   {
     path:"video",

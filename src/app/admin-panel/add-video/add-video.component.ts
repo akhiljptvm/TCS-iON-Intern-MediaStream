@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { LandingServiceService } from '../../landing-main/landing-service.service'
+import Swal from 'sweetalert2';
+// import * as $ from 'jquery';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 export interface Tag {
@@ -15,7 +20,10 @@ export interface Tag {
 })
 export class AddVideoComponent implements OnInit {
 
-
+  videoUrl:any;
+  videoSizeError: any;
+  videoSuccess:any
+      // tag ts
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   tags: Tag[] = [{name: 'video'}, {name: 'comedy'}, {name: 'add tag'}];
@@ -40,10 +48,123 @@ export class AddVideoComponent implements OnInit {
     }
   }
 
+        // end tags ts
+ 
+  selectedFile: any;
+  formData: any = {};
+  fd = new FormData();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  url = '';
+  uploadVideo:any = {
+    videoTitle: "",
+    video: "",
+    thumbnail: "",
+    category:"",
+    description: "",
+    releaseYear: "",
+    subtitle:"",
+    quality: "",
+    tags: "",
+    genre:"",
   }
 
+  constructor(private landingServ:LandingServiceService,private route:Router, private routerAct:ActivatedRoute,private sanitizer:DomSanitizer) { }
+   
+  onSelectFile(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event:any) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+  }
+
+
+  // validation
+
+  onSubmit(Upload:any){
+    console.log("video uploaded");
+  }
+
+  ngOnInit(): void {
+
+  }
+  //
+
+  //upload thumbnail
+  thumbFile(event: any) {
+    console.log("checkkkkk image")
+    console.log("image function",event.target.files[0])
+    this.selectedFile = <File>event.target.files[0];
+    this.fd.append('thumbnail', this.selectedFile, this.selectedFile.name);
+  }
+  //upload Video
+  videoFile(event: any) {
+
+    // const currentVideo = evt.target as HTMLVideoElement;
+    // if (currentVideo.videoWidth <= 720 && currentVideo.videoHeight <= 540) {
+    //   alert("resolution is too low,upload greater than 720p")
+    // }
+    console.log("checkkkkk")
+    console.log("video function",event.target.files[0])
+    this.selectedFile = <File>event.target.files[0];
+    this.fd.append('video', this.selectedFile, this.selectedFile.name);
+  }
+  //upload Subtitle
+  // subtitleFile(event: any) {
+  //   this.selectedFile = <File>event.target.files[0];
+  //   this.fd.append('subtitle', this.selectedFile, this.selectedFile.name);
+  // }
+
+  uploadVid() {
+     
+    for (const prop in this.uploadVideo)
+    {
+      this.fd.append(prop, this.uploadVideo[prop]);
+
+    }
+
+    this.landingServ.addVideo(this.fd).subscribe((data) => {
+      console.log("Successfully Uploaded", data)
+      this.route.navigate(["/"])
+
+      if (data) {
+        Swal.fire("Successfully Added", "success")
+          .then(() => {
+            this.route.navigate(['/MainPage/home'], { relativeTo: this.routerAct });
+          })
+      }
+      else {
+        Swal.fire("Network Error", "Please do after sometime ", "error")
+          .then(() => {
+            this.route.navigate(['/'], { relativeTo: this.routerAct });
+          })
+
+      }
+    })
+  }
+
+  readVideoUrl(event: any) {
+    const files = event.target.files;
+    if (files && files[0]) {
+      this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(files[0])
+      );
+    }
+  }
+
+  getDuration(e:any) {
+    const duration = e.target.duration;
+    // this.videoSizeError = duration >= 25;
+    if (duration >= 25) {
+      this.videoSuccess = false
+       this.videoSizeError = true
+    } else {
+      this.videoSizeError = false
+      this.videoSuccess = true
+    }
+  }
 }

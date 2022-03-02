@@ -11,7 +11,11 @@ import {LandingServiceService} from 'src/app/landing-main/landing-service.servic
 })
 export class HomeComponent implements OnInit {
   isJqueryWorking:any
-  videoData:any
+  videoData: any
+  ratingData:any
+
+  searchBoxTxt: string = '';
+  
    
   constructor(private UploadService:LandingServiceService,private router:Router,private route:ActivatedRoute) { }
 
@@ -20,7 +24,11 @@ export class HomeComponent implements OnInit {
   //     this.isJqueryWorking = 'Jquery is working !!!';
   // });
     this.UploadService.videoView().subscribe((data: any) => {
-      this.videoData  = data
+      this.videoData = data
+
+      this.UploadService.reviewList().subscribe((data2:any) => {
+        this.ratingData = data2
+     })
        
     })
     

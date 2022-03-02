@@ -23,5 +23,90 @@ export class LandingServiceService {
   getSingleVid(id: any) {
     return this.http.get<any>(`${this.server_address}/upload/vidupload/`+id)
   }
+  deleteVideo(item:any){
+    return this.http.post(`${this.server_address}/upload/vidupload/remove`,item);
+  }
+
+  //?-----userlogin-----
+ 
+  // userLogin(user: any){
+  //   return this.http.post(`${this.server_address}/user/userLogin`,user);
+  // }
   
+  userList(){
+    return this.http.get<any>(`${this.server_address}/user/userList`);
+  }
+
+  deleteUser(item:any){
+    return this.http.post(`${this.server_address}/user/signup/remove`,item);
+  }
+
+  editUser(item: any) {
+    console.log("item found at editadmin",item)
+    return this.http.post(`${this.server_address}/user/signup/update`,item)
+  }
+
+  //?-----userSignup----
+  userSignup(item:any){
+    console.log(item);
+    return this.http.post(`${this.server_address}/user`,item);
+  }
+
+  // //?-----adminlogin-----
+  // adminLogin(item:any){
+  //   console.log(item);
+  //   return this.http.post(`${this.server_address}/signup`,item);
+  // }
+
+  //Review 
+
+  
+  reviewList(){
+    return this.http.get<any>(`${this.server_address}/review`);
+  }
+  
+  addReview(data:any) {
+    return this.http.post<any>(`${this.server_address}/review/add` ,data)
+  }
+  
+  deleteReview(item:any){
+    return this.http.post(`${this.server_address}/review/delete`,item);
+  }
+
+  editReview(item: any) {
+    console.log("item found at editadmin",item)
+    return this.http.post(`${this.server_address}/review/update`,item)
+  }
+
+//?-----Admin-----
+ 
+  // userLogin(user: any){
+  //   return this.http.post(`${this.server_address}/user/userLogin`,user);
+  // }
+  
+  AdminList(){
+    return this.http.get<any>(`${this.server_address}/aadmin/AdminList`);
+  }
+
+  removeAdmin(item:any){
+    return this.http.post(`${this.server_address}/admin/`,item);
+  }
+
+  // editUser(item: any) {
+  //   console.log("item found at editadmin",item)
+  //   return this.http.post(`${this.server_address}/update`,item)
+  // }
+
+  //?-----userSignup----
+  adminSignup(item:any){
+    console.log(item);
+    return this.http.post(`${this.server_address}/admin`,item);
+  }
+
+  //?-----adminlogin-----
+  adminLogin(item:any){
+    console.log(item);
+    return this.http.post(`${this.server_address}/admin/login`,item);
+  }
+
 }
